@@ -75,7 +75,22 @@ class _MyAppState extends State<MyApp> {
   }
 
   // TODO Update Data
-  updateData() {}
+  updateData() {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('crud').doc(stdName);
+
+    Map<String, dynamic> students = ({
+      "studentName": stdName,
+      "studentID": stdID,
+      "studyProgramID": programID,
+      "studentCGPA": stdGPA
+    });
+
+    // update data to Firebase
+    documentReference
+        .set(students)
+        .whenComplete(() => print('$stdName updated'));
+  }
 
   // TODO Delete Data
   deleteData() {}
