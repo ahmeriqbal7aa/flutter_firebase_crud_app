@@ -19,5 +19,5 @@ TextStyle simpleTextStyle() {
 }
 
 RoundedRectangleBorder raisedButtonBorder() {
-  return RoundedRectangleBorder(borderRadius: BorderRadius.circular(14.0));
+  return RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0));
 }

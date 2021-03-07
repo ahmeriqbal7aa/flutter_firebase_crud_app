@@ -12,7 +12,7 @@ void main() async {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       brightness: Brightness.light,
-      primaryColor: Colors.amber[400],
+      primaryColor: Colors.amber[500],
     ),
   ));
 }
@@ -164,9 +164,9 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   Expanded(
                     child: RaisedButton(
-                      onPressed: () {
-                        createData();
-                      },
+                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      elevation: 8.0,
+                      onPressed: () => createData(),
                       color: Colors.green,
                       child: Text('Create',
                           style: TextStyle(fontWeight: FontWeight.bold)),
@@ -176,9 +176,9 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Expanded(
                     child: RaisedButton(
-                      onPressed: () {
-                        readData();
-                      },
+                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      elevation: 8.0,
+                      onPressed: () => readData(),
                       color: Colors.blue,
                       child: Text('Read',
                           style: TextStyle(fontWeight: FontWeight.bold)),
@@ -188,9 +188,9 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Expanded(
                     child: RaisedButton(
-                      onPressed: () {
-                        updateData();
-                      },
+                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      elevation: 8.0,
+                      onPressed: () => updateData(),
                       color: Colors.orange,
                       child: Text('Update',
                           style: TextStyle(fontWeight: FontWeight.bold)),
@@ -200,9 +200,9 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Expanded(
                     child: RaisedButton(
-                      onPressed: () {
-                        deleteData();
-                      },
+                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      elevation: 8.0,
+                      onPressed: () => deleteData(),
                       color: Colors.red,
                       child: Text('Delete',
                           style: TextStyle(fontWeight: FontWeight.bold)),
@@ -212,7 +212,92 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ],
               ),
-              SizedBox(height: 20.0),
+              Divider(thickness: 1.0, height: 25.0, color: Colors.green),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Name',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Student ID',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Program ID',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      'CGPA',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.0),
+              StreamBuilder(
+                stream:
+                    FirebaseFirestore.instance.collection('crud').snapshots(),
+                // ignore: missing_return
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.docs.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot documentSnapshot =
+                            snapshot.data.docs[index];
+                        return Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                documentSnapshot["studentName"],
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                documentSnapshot["studentID"],
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                documentSnapshot["studyProgramID"],
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                documentSnapshot["studentCGPA"].toString(),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    return Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.black,
+                      ),
+                    );
+                  }
+                },
+              ),
             ],
           ),
         ),
