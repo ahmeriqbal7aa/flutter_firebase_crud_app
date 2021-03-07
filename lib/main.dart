@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,21 +42,33 @@ class _MyAppState extends State<MyApp> {
     this.stdGPA = double.parse(result);
   }
 
+  // TODO Create Data
   createData() {
-    print('created');
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('crud').doc(stdName);
+
+    // create Map to send data in key:value pair form
+    Map<String, dynamic> students = ({
+      "studentName": stdName,
+      "studentID": stdID,
+      "studyProgramID": programID,
+      "studentCGPA": stdGPA
+    });
+
+    // send data to Firebase
+    documentReference
+        .set(students)
+        .whenComplete(() => print('$stdName created'));
   }
 
-  readData() {
-    print('read');
-  }
+  // TODO Read Data
+  readData() {}
 
-  updateData() {
-    print('update');
-  }
+  // TODO Update Data
+  updateData() {}
 
-  deleteData() {
-    print('delete');
-  }
+  // TODO Delete Data
+  deleteData() {}
   // ====================================================== //
 
   @override
@@ -85,31 +98,28 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 10.0),
               TextFormField(
                 style: simpleTextStyle(),
-                obscureText: true,
                 decoration: textFieldInputDecoration(
                   'Student ID',
                   Icon(Icons.perm_identity_outlined),
                 ),
-                onChanged: (String studentID) {
-                  getStudentID(studentID);
+                onChanged: (String sID) {
+                  getStudentID(sID);
                 },
               ),
               SizedBox(height: 10.0),
               TextFormField(
                 style: simpleTextStyle(),
-                obscureText: true,
                 decoration: textFieldInputDecoration(
                   'Study Program ID',
                   Icon(Icons.perm_identity_outlined),
                 ),
-                onChanged: (String studyProgramID) {
-                  getStudyProgramID(studyProgramID);
+                onChanged: (String pID) {
+                  getStudyProgramID(pID);
                 },
               ),
               SizedBox(height: 10.0),
               TextFormField(
                 style: simpleTextStyle(),
-                obscureText: true,
                 decoration: textFieldInputDecoration(
                   'CGPA',
                   Icon(Icons.confirmation_number_outlined),
