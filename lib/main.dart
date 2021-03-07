@@ -62,7 +62,17 @@ class _MyAppState extends State<MyApp> {
   }
 
   // TODO Read Data
-  readData() {}
+  readData() {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('crud').doc(stdName);
+
+    documentReference.get().then((dataSnapshot) {
+      print(dataSnapshot.data()["studentName"]);
+      print(dataSnapshot.data()["studentID"]);
+      print(dataSnapshot.data()["studyProgramID"]);
+      print(dataSnapshot.data()["studentCGPA"]);
+    });
+  }
 
   // TODO Update Data
   updateData() {}
