@@ -93,7 +93,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   // TODO Delete Data
-  deleteData() {}
+  deleteData() {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('crud').doc(stdName);
+
+    // delete data from Firebase
+    documentReference.delete().whenComplete(() => print('$stdName deleted'));
+  }
   // ====================================================== //
 
   @override
