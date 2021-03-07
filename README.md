@@ -1,7 +1,7 @@
-# flutter_firebase_crud_app
-
+# flutter_firebase_CRUD_app
+```
 A new Flutter-Firebase "CRUD" application with Firebase Cloud Firestore.
-
+```
 ## Getting Started
 
 For help getting started with Flutter, view our
