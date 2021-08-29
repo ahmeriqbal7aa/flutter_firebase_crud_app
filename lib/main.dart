@@ -7,14 +7,16 @@ import 'package:flutter_firebase_crud_app/widgets.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(
-    home: MyApp(),
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      brightness: Brightness.light,
-      primaryColor: Colors.amber[500],
+  runApp(
+    MaterialApp(
+      home: MyApp(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.amber[500],
+      ),
     ),
-  ));
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -88,7 +90,7 @@ class _MyAppState extends State<MyApp> {
 
     // update data to Firebase
     documentReference
-        .set(students)
+        .update(students)
         .whenComplete(() => print('$stdName updated'));
   }
 
@@ -163,6 +165,7 @@ class _MyAppState extends State<MyApp> {
               Row(
                 children: [
                   Expanded(
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       padding: EdgeInsets.symmetric(vertical: 15.0),
                       elevation: 8.0,
@@ -175,6 +178,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Expanded(
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       padding: EdgeInsets.symmetric(vertical: 15.0),
                       elevation: 8.0,
@@ -187,6 +191,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Expanded(
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       padding: EdgeInsets.symmetric(vertical: 15.0),
                       elevation: 8.0,
@@ -199,6 +204,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   Expanded(
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       padding: EdgeInsets.symmetric(vertical: 15.0),
                       elevation: 8.0,
