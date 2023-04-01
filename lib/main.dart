@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_crud_app/widgets.dart';
 
@@ -165,55 +164,66 @@ class _MyAppState extends State<MyApp> {
               Row(
                 children: [
                   Expanded(
-                    // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      padding: EdgeInsets.symmetric(vertical: 15.0),
-                      elevation: 8.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 15.0),
+                        elevation: 8.0,
+                        backgroundColor: Colors.green,
+                        shape: raisedButtonBorder(),
+                      ),
                       onPressed: () => createData(),
-                      color: Colors.green,
                       child: Text('Create',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      textColor: Colors.white,
-                      shape: raisedButtonBorder(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
                     ),
                   ),
                   Expanded(
                     // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      padding: EdgeInsets.symmetric(vertical: 15.0),
-                      elevation: 8.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 15.0),
+                        elevation: 8.0,
+                        backgroundColor: Colors.blue,
+                        shape: raisedButtonBorder(),
+                      ),
                       onPressed: () => readData(),
-                      color: Colors.blue,
                       child: Text('Read',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      textColor: Colors.white,
-                      shape: raisedButtonBorder(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
                     ),
                   ),
                   Expanded(
                     // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      padding: EdgeInsets.symmetric(vertical: 15.0),
-                      elevation: 8.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 15.0),
+                        backgroundColor: Colors.orange,
+                        elevation: 8.0,
+                        shape: raisedButtonBorder(),
+                      ),
                       onPressed: () => updateData(),
-                      color: Colors.orange,
                       child: Text('Update',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      textColor: Colors.white,
-                      shape: raisedButtonBorder(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
                     ),
                   ),
                   Expanded(
                     // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      padding: EdgeInsets.symmetric(vertical: 15.0),
-                      elevation: 8.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 15.0),
+                        elevation: 8.0,
+                        backgroundColor: Colors.red,
+                        shape: raisedButtonBorder(),
+                      ),
                       onPressed: () => deleteData(),
-                      color: Colors.red,
                       child: Text('Delete',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      textColor: Colors.white,
-                      shape: raisedButtonBorder(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
                     ),
                   ),
                 ],
